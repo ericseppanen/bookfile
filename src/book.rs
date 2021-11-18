@@ -671,14 +671,13 @@ mod tests {
 
     #[test]
     fn toc_compat() {
-        let mut toc = Vec::new();
-        toc.push(TocEntryV1 {
+        let toc = vec![TocEntryV1 {
             id: 1234,
             span: Some(FileSpanV1 {
                 length: 33.try_into().unwrap(),
                 offset: 44,
             }),
-        });
+        }];
         let toc = TocV1(toc);
         let toc = TocV2::from_version(toc);
         assert_eq!(toc.0.len(), 1);
